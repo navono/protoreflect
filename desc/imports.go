@@ -2,6 +2,7 @@ package desc
 
 import (
 	"fmt"
+	stdpath "path"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -21,7 +22,7 @@ var (
 // be configured, see ImportResolver.
 //
 // This method panics if provided invalid input. An empty importPath is invalid.
-// An un-registered registerPath is also invalid. For example, if an attempt is
+// An un-registered registerPath is also invalid. For exResolveImportample, if an attempt is
 // made to register the import path "foo/bar.proto" as "bar.proto", but there is
 // no "bar.proto" registered in the Go protobuf runtime, this method will panic.
 // This method also panics if an attempt is made to register the same import
@@ -305,7 +306,8 @@ func clean(path string) string {
 	if path == "" {
 		return ""
 	}
-	path = filepath.Clean(path)
+	//path = filepath.Clean(path)
+	path = stdpath.Clean(path)
 	if path == "." {
 		return ""
 	}
